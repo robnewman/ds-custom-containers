@@ -1,13 +1,13 @@
-# Seqera base image
+# Seqera Connect base image
 FROM public.cr.seqera.io/platform/connect-client:0.7 AS connect
 
-# Rocker image
+# Rocker RStudio image
 FROM rocker/rstudio:4.4.1
 
 # Define Connect port
 ENV TOWER_CONNECT_PORT="8787"
 
-# Disable Auth and enable Root user
+# Disable Auth, enable Root user, define workspace
 ENV DISABLE_AUTH=true
 ENV ROOT=true
 ENV HOME=/workspace
