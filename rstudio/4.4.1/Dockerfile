@@ -19,11 +19,11 @@ COPY --from=connect /usr/bin/connect-client /usr/bin/connect-client
 RUN /usr/bin/connect-client --install
 
 # 3. Install R packages needed
-RUN R -e "install.packages(c('rmarkdown', 'png', 'reticulate'))" \
-    -e "if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')" \
-    -e "BiocManager::install(c('Gviz', 'GenomicRanges', 'Biostrings', 'VariantAnnotation'))" && \
-    R -e "unlink('/tmp/Rtmp*', recursive = TRUE)" && \
-    rm -rf /tmp/downloaded_packages/ /tmp/*.rds /var/lib/apt/lists/* /tmp/*
+# RUN R -e "install.packages(c('rmarkdown', 'png', 'reticulate'))" \
+#     -e "if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')" \
+#     -e "BiocManager::install(c('Gviz', 'GenomicRanges', 'Biostrings', 'VariantAnnotation'))" && \
+#     R -e "unlink('/tmp/Rtmp*', recursive = TRUE)" && \
+#     rm -rf /tmp/downloaded_packages/ /tmp/*.rds /var/lib/apt/lists/* /tmp/*
 
 # 4. Add and run RStudio
 COPY ./run /etc/services.d/rstudio/run
