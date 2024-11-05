@@ -23,8 +23,8 @@ COPY ./run /etc/services.d/rstudio/run
 # 4. Set default workspace
 RUN echo "session-default-working-dir=/workspace" >> /etc/rstudio/rsession.conf
 
-# 4. Configure connect as the entrypoint
+# 5. Configure connect as the entrypoint
 ENTRYPOINT ["/usr/bin/connect-client", "--entrypoint"]
 
-# 5. Run the initialization script
+# 6. Run the initialization script
 CMD ["/usr/bin/bash","-c", "/init"]
