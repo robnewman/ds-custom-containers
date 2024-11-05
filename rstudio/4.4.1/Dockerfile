@@ -14,11 +14,17 @@ ENV ROOT=true
 # 1. Add connect binary
 COPY --from=connect /usr/bin/connect-client /usr/bin/connect-client
 
-# 2. Add RStudio
+# 2. Install connect dependencies
+RUN /usr/bin/connect-client --install
+
+# 3. Add and run RStudio
 COPY ./run /etc/services.d/rstudio/run
 
-# 3. Install connect dependencies
-RUN /usr/bin/connect-client --install
+# 4. Set default workspace
+RUN echo "session-default-working-dir=/workspace" >> /etc/rstudio/rsession.conf
 
 # 4. Configure connect as the entrypoint
 ENTRYPOINT ["/usr/bin/connect-client", "--entrypoint"]
+
+# 5. Run the initialization script
+CMD ["/usr/bin/bash","-c", "/init"]
