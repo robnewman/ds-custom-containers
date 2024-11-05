@@ -15,7 +15,7 @@ ENV ROOT=true
 COPY --from=connect /usr/bin/connect-client /usr/bin/connect-client
 
 # 2. Add RStudio
-COPY ./docker/rstudio_4.4.1/run /etc/services.d/rstudio/run
+COPY ./run /etc/services.d/rstudio/run
 
 # 3. Install connect dependencies
 RUN /usr/bin/connect-client --install
