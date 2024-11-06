@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv bash
+
+## load /etc/environment vars first:
+for line in $( cat /etc/environment ) ; do export $line > /dev/null; done
+
+## make workdir owned by the default user
+chown -R rstudio /workspace
+
+exec /usr/lib/rstudio-server/bin/rserver --server-daemonize 0 --www-port $CONNECT_TOOL_PORT
